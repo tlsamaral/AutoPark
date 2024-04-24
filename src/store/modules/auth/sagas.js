@@ -9,7 +9,6 @@ import axios from '../../../services/axios';
 function* loginRequest({ payload }) {
   try {
     const response = yield call(axios.post, '/tokens', payload);
-    console.log(response);
     yield put(actions.loginSuccess({ ...response.data }));
 
     toast.success(`Welcome ${response.data.user.nome}.`);
@@ -33,10 +32,11 @@ function persistRehaydrate({ payload }) {
 // eslint-disable-next-line consistent-return
 function* registerRequest({ payload }) {
   const { id, nome, email, password } = payload;
-
+  console.log(payload);
   try {
     if (id) {
-      yield call(axios.put, '/users', {
+      yield call(axios.put, '/users/', {
+        id,
         email,
         nome,
         password: password || undefined,
@@ -53,6 +53,7 @@ function* registerRequest({ payload }) {
       yield put(actions.registerCreatedSuccess({ nome, email, password }));
     }
   } catch (e) {
+    console.log(e);
     const errors = get(e, 'response.data.error', []);
     const status = get(e, 'response.status', 0);
 

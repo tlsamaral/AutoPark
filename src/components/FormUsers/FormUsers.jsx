@@ -7,8 +7,13 @@ import axios from '../../services/axios';
 import AppContext from '../../context/AppContext';
 
 function FormUsers() {
-  const { setUsers, setDialogOpen, selectedUser, setSelectedUser } =
-    useContext(AppContext);
+  const {
+    setUsers,
+    setDialogOpen,
+    selectedUser,
+    setSelectedUser,
+    setIsLoading,
+  } = useContext(AppContext);
   const [formUser, setFormUser] = useState({
     id: 0,
     nome: '',
@@ -27,7 +32,7 @@ function FormUsers() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     try {
       setDialogOpen(false);
       if (formUser.nome.length <= 3) {
@@ -56,10 +61,10 @@ function FormUsers() {
         }
       } else {
         try {
-          console.log(formUser);
           await axios.put(`/users/`, {
             ...formUser,
           });
+          setIsLoading(false);
           toast.success('User updated with success!');
           setUsers((state) =>
             state.map((user) => (user.id === formUser.id ? formUser : user))
@@ -70,6 +75,7 @@ function FormUsers() {
         }
       }
     } catch (err) {
+      setIsLoading(false);
       console.log(err);
       toast.error('Unable to register user. Try again!');
     }

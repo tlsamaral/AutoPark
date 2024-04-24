@@ -1,33 +1,51 @@
 import { TbSettingsUp } from 'react-icons/tb';
 import { useSelector, useDispatch } from 'react-redux';
 import { DropdownMenu, Button } from '@radix-ui/themes';
+import { FaUserCircle } from 'react-icons/fa';
 import { get } from 'lodash';
-
-import { useContext } from 'react';
-import Avatar from '../../assets/images/danny-bad.jpeg';
+import { useContext, useEffect, useState } from 'react';
 import * as actions from '../../store/modules/auth/actions';
 import AppContext from '../../context/AppContext';
 import ModalDialogUserProfile from '../ui-radix/ModalDialogUserProfile/ModalDialogUser';
 
 function UserCard() {
-  const { setDialogUserProfileOpen } = useContext(AppContext);
+  const { setDialogUserProfileOpen, userProfile } = useContext(AppContext);
   const user = useSelector((state) => state.auth.user);
+  const [userImg, setUserImg] = useState(null);
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
 
-  const { nome, email } = user;
   const dispatch = useDispatch();
-  const handleLogof = () => {
+
+  useEffect(() => {
+    console.log('Mudou', user);
+    setEmail(user.email);
+    setNome(user.nome);
+  }, [user.nome, user.email]);
+
+  useEffect(() => {
+    const userImageUrl = get(user, 'Fotos[0].url', null);
+
+    if (!userImageUrl) return;
+    setUserImg(userImageUrl);
+  }, [user]);
+
+  useEffect(() => {
+    setUserImg(userProfile);
+  }, [userProfile]);
+
+  const handleLogoff = () => {
     dispatch(actions.loginFailure());
   };
-
   return (
     <>
       <div className="w-11/12 left-2 absolute bottom-0 border-t-gray-50 flex justify-between items-center p-5 mb-2 rounded-2xl">
         <div className="flex">
           <div className="w-12 h-12 rounded-full flex justify-center items-center overflow-hidden border-slate-400 border-2">
-            {get(user, 'Fotos[0].url', false) ? (
-              <img src={user.Fotos[0].url} alt="" />
+            {userImg ? (
+              <img src={userImg} className="w-full h-full" alt="User Img" />
             ) : (
-              <img src={Avatar} className="w-full h-full" alt="logo" />
+              <FaUserCircle size={38} />
             )}
           </div>
           <div className="flex flex-col ml-3">
@@ -54,8 +72,8 @@ function UserCard() {
                 My Profile
               </DropdownMenu.Item>
               <DropdownMenu.Separator />
-              <DropdownMenu.Item color="red" onClick={handleLogof}>
-                Logof
+              <DropdownMenu.Item color="red" onClick={handleLogoff}>
+                Logoff
               </DropdownMenu.Item>
             </DropdownMenu.Content>
           </DropdownMenu.Root>

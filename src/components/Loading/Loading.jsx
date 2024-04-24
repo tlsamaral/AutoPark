@@ -1,21 +1,15 @@
-import PropTypes from 'prop-types';
-import { LoadingContainer } from './styled';
+import { useContext } from 'react';
+import './Loading.css';
+import AppContext from '../../context/AppContext';
 
-function Loading({ isLoading }) {
+function Loading() {
+  const { isLoading } = useContext(AppContext);
   if (!isLoading) return <></>;
   return (
-    <LoadingContainer>
-      <svg className="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24" />
-    </LoadingContainer>
+    <div className="w-screen h-screen bg-black/70 flex justify-center items-center absolute z-50">
+      <div className="loader" />
+    </div>
   );
 }
 
 export default Loading;
-
-Loading.defaultProps = {
-  isLoading: false,
-};
-
-Loading.propTypes = {
-  isLoading: PropTypes.bool,
-};

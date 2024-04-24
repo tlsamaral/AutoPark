@@ -13,9 +13,10 @@ import * as actions from '../../store/modules/auth/actions';
 
 function UserProfileForm({ userState }) {
   const dispatch = useDispatch();
-  const { setDialogUserProfileOpen } = useContext(AppContext);
+  const { setDialogUserProfileOpen, setUserProfile } = useContext(AppContext);
 
   const [file, setFile] = useState(null);
+  const [foto, setFoto] = useState('');
   const [user, setUser] = useState({
     id: 0,
     nome: '',
@@ -24,10 +25,15 @@ function UserProfileForm({ userState }) {
     role: '',
   });
 
-  const [foto, setFoto] = useState('');
   useEffect(() => {
-    setUser(userState);
     setFoto(get(userState, 'Fotos[0].url', ''));
+
+    const dataUser = {
+      id: userState.id,
+      nome: userState.nome,
+      email: userState.email,
+    };
+    setUser(dataUser);
   }, []);
 
   const handleIChange = (e) => {
@@ -58,6 +64,7 @@ function UserProfileForm({ userState }) {
       }
 
       if (formErrors) return;
+
       dispatch(actions.registerRequest({ ...user }));
 
       await axios.post('/fotos/', formData, {
@@ -65,6 +72,7 @@ function UserProfileForm({ userState }) {
           'Content-Type': 'multipart/form-data',
         },
       });
+      setUserProfile(foto);
       setDialogUserProfileOpen(false);
       toast.success('User profile updated successfully!');
 

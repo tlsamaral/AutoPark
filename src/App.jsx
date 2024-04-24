@@ -19,7 +19,7 @@ function App() {
       <PersistGate persistor={persistor}>
         <MyProvider>
           <Router history={history}>
-            <Loading isLoading={false} />
+            <Loading isLoading />
             <Routes />
             <GlobalStyles />
             <ToastContainer

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 import { isEmail } from 'validator';
 import { useDispatch } from 'react-redux';
@@ -7,8 +7,10 @@ import { get } from 'lodash';
 import { Container } from './styled';
 import * as actions from '../../store/modules/auth/actions';
 import Logo from '../../assets/images/logo.png';
+import AppContext from '../../context/AppContext';
 
 function Login(props) {
+  const { setIsLoading } = useContext(AppContext);
   const dispatch = useDispatch();
   const prevPath = get(props, 'location.state.prevPath', '/');
 
@@ -28,7 +30,7 @@ function Login(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     let formErrors = false;
 
     if (!isEmail(user.email)) {

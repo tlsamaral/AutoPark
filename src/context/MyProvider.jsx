@@ -8,6 +8,8 @@ function MyProvider({ children }) {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogUserOpen, setDialogUserOpen] = useState(false);
   const [dialogUserProfileOpen, setDialogUserProfileOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [userProfile, setUserProfile] = useState(null);
   const [selectedUser, setSelectedUser] = useState({
     id: 0,
     nome: '',
@@ -27,6 +29,10 @@ function MyProvider({ children }) {
       setDialogUserProfileOpen,
       selectedUser,
       setSelectedUser,
+      userProfile,
+      setUserProfile,
+      isLoading,
+      setIsLoading,
     }),
     [
       users,
@@ -39,6 +45,10 @@ function MyProvider({ children }) {
       setDialogUserProfileOpen,
       selectedUser,
       setSelectedUser,
+      userProfile,
+      setUserProfile,
+      isLoading,
+      setIsLoading,
     ]
   );
 
