@@ -6,7 +6,7 @@ export const Container = styled.div`
   background-image: url(${(props) => props.backgroundImg});
   background-position: center;
   background-size: cover;
-  overflow: hidden;
+  /* overflow: hidden; */
 `;
 
 export const TitlewLine = styled.h3`
@@ -15,15 +15,16 @@ export const TitlewLine = styled.h3`
   align-items: center;
   gap: 4px;
   width: 100%;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: bold;
-  justify-content: center;
+  font-family: 'Inter', sans-serif;
 
-  /* &::after {
+  &::after {
     content: '';
-    height: 1px;
+    height: 0.5px;
     width: 100%;
     background: #fff;
-    max-width: 222px;
-  } */
+    max-width: 107px;
+    opacity: 0.8;
+  }
 `;
