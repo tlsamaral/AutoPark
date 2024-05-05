@@ -6,6 +6,7 @@ import AppContext from './AppContext';
 function MyProvider({ children }) {
   const [users, setUsers] = useState([]);
   const [vacancies, setVacancies] = useState([]);
+  const [turnstileData, setTurnstileData] = useState([]);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogUserOpen, setDialogUserOpen] = useState(false);
   const [dialogUserProfileOpen, setDialogUserProfileOpen] = useState(false);
@@ -48,6 +49,8 @@ function MyProvider({ children }) {
       setSelectedVacancy,
       vacancies,
       setVacancies,
+      turnstileData,
+      setTurnstileData,
     }),
     [
       users,
@@ -68,6 +71,8 @@ function MyProvider({ children }) {
       setSelectedVacancy,
       vacancies,
       setVacancies,
+      turnstileData,
+      setTurnstileData,
     ]
   );
 

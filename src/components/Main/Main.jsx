@@ -4,6 +4,7 @@ import Home from '../Home/Home';
 import Header from '../Header/Header';
 import Users from '../Users/Users';
 import Vacancies from '../Vacancies/Vacancies';
+import Turnstiles from '../Turnstiles/Turnstiles';
 
 function Main() {
   return (
@@ -13,6 +14,7 @@ function Main() {
         <Route exact path="/" component={Home} />
         <Route exact path="/vacancies" component={Vacancies} />
         <Route exact path="/users" component={Users} />
+        <Route exact path="/turnstiles" component={Turnstiles} />
       </Switch>
     </main>
   );
