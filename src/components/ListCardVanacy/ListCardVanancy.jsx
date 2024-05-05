@@ -1,54 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useContext } from 'react';
+import { toast } from 'react-toastify';
 import CardVanancy from '../CardVanancy/CardVanancy';
 
+import axios from '../../services/axios';
+import AppContext from '../../context/AppContext';
+
 function ListCardVanancy() {
-  const [vanancies, setVanancies] = useState([]);
+  const { vacancies, setVacancies } = useContext(AppContext);
 
   useEffect(() => {
-    const vagas = [
-      {
-        id: 1,
-        name: 'Spot 1',
-        description: 'Standard parking spot',
-        filled: false,
-        updatedAt: new Date(),
-      },
-      {
-        id: 2,
-        name: 'Spot 2',
-        description: 'Parking spot for people with disabilities',
-        filled: true,
-        updatedAt: new Date(),
-      },
-      {
-        id: 3,
-        name: 'Spot 3',
-        description: 'Reserved spot for seniors',
-        filled: false,
-        updatedAt: new Date(),
-      },
-      {
-        id: 4,
-        name: 'Spot 4',
-        description: 'Loading and unloading spot',
-        filled: false,
-        updatedAt: new Date(),
-      },
-      {
-        id: 5,
-        name: 'Spot 5',
-        description: 'VIP spot',
-        filled: true,
-        updatedAt: new Date(),
-      },
-    ];
+    const getData = async () => {
+      try {
+        const response = await axios.get('/vacancies');
+        setVacancies(response.data);
+      } catch (err) {
+        console.log(err);
+        toast.error('Failed to fetch vacancies. Please try again later.');
+      }
+    };
+    getData();
 
-    setVanancies(vagas);
-  }, []); // Executar apenas uma vez ao montar o componente
+    setInterval(() => {
+      getData();
+    }, 100);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
-    <section className="w-full flex flex-wrap gap-4 mt-10 py-3">
-      {vanancies.map((vanancy) => (
+    <section className="w-full flex flex-wrap gap-4">
+      {vacancies.map((vanancy) => (
         <CardVanancy key={vanancy.id} vanancy={vanancy} />
       ))}
     </section>

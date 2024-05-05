@@ -2,7 +2,7 @@ import { DropdownMenu, Button } from '@radix-ui/themes';
 import { HiOutlineDotsVertical } from 'react-icons/hi';
 import propTypes from 'prop-types';
 
-function DropdownUserTable({ id, handleDelete, handleUpdate }) {
+function DropdownTable({ id, handleDelete, handleUpdate }) {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger>
@@ -23,9 +23,9 @@ function DropdownUserTable({ id, handleDelete, handleUpdate }) {
   );
 }
 
-export default DropdownUserTable;
+export default DropdownTable;
 
-DropdownUserTable.propTypes = {
+DropdownTable.propTypes = {
   id: propTypes.number.isRequired,
   handleDelete: propTypes.func.isRequired,
   handleUpdate: propTypes.func.isRequired,

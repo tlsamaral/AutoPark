@@ -11,14 +11,13 @@ import ModalDialogUserProfile from '../ui-radix/ModalDialogUserProfile/ModalDial
 function UserCard() {
   const { setDialogUserProfileOpen, userProfile } = useContext(AppContext);
   const user = useSelector((state) => state.auth.user);
-  const [userImg, setUserImg] = useState(null);
+  const [userImg, setUserImg] = useState('');
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('Mudou', user);
     setEmail(user.email);
     setNome(user.nome);
   }, [user.nome, user.email]);

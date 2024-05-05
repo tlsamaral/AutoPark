@@ -5,6 +5,7 @@ import AppContext from './AppContext';
 
 function MyProvider({ children }) {
   const [users, setUsers] = useState([]);
+  const [vacancies, setVacancies] = useState([]);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [dialogUserOpen, setDialogUserOpen] = useState(false);
   const [dialogUserProfileOpen, setDialogUserProfileOpen] = useState(false);
@@ -16,6 +17,16 @@ function MyProvider({ children }) {
     email: '',
     password: '',
     role: '',
+  });
+  const [selectedVacancy, setSelectedVacancy] = useState({
+    id: 0,
+    description: '',
+    sensor_id: '',
+    port_r: '',
+    port_g: '',
+    port_b: '',
+    micro_id: '',
+    id_occupied: false,
   });
   const value = useMemo(
     () => ({
@@ -33,6 +44,10 @@ function MyProvider({ children }) {
       setUserProfile,
       isLoading,
       setIsLoading,
+      selectedVacancy,
+      setSelectedVacancy,
+      vacancies,
+      setVacancies,
     }),
     [
       users,
@@ -49,6 +64,10 @@ function MyProvider({ children }) {
       setUserProfile,
       isLoading,
       setIsLoading,
+      selectedVacancy,
+      setSelectedVacancy,
+      vacancies,
+      setVacancies,
     ]
   );
 

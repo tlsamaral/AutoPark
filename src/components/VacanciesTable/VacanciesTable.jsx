@@ -7,14 +7,14 @@ import axios from '../../services/axios';
 import DropdownTable from '../ui-radix/DropdownTable/DropdownTable';
 import AppContext from '../../context/AppContext';
 
-function Row({ user }) {
-  const { users, setUsers, setSelectedUser, setDialogOpen } =
+function Row({ vacancy }) {
+  const { vacancies, setVacancies, setDialogOpen, setSelectedVacancy } =
     useContext(AppContext);
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/users/${id}`);
-      const newList = users.filter((u) => u.id !== id);
-      setUsers([...newList]);
+      await axios.delete(`/vacancies/${id}`);
+      const newList = vacancies.filter((u) => u.id !== id);
+      setVacancies([...newList]);
     } catch (err) {
       console.log(err);
       toast.error('Unknow error.');
@@ -23,11 +23,9 @@ function Row({ user }) {
 
   const handleUpdate = async (id) => {
     try {
-      console.log(id);
-
-      const getData = await axios.get(`/users/${id}}`);
-      const getUser = getData.data;
-      setSelectedUser(getUser);
+      const getData = await axios.get(`/vacancies/${id}}`);
+      const getVacancy = getData.data;
+      setSelectedVacancy(getVacancy);
       setDialogOpen(true);
     } catch (err) {
       console.log(err);
@@ -36,19 +34,24 @@ function Row({ user }) {
   };
   return (
     <tr>
-      <td className="px-6 py-4 whitespace-nowrap text-slate-50">{user.nome}</td>
       <td className="px-6 py-4 whitespace-nowrap text-slate-50">
-        {user.email}
+        {vacancy.description}
       </td>
-      <td className="px-6 py-4 whitespace-nowrap">
-        <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-          Active
-        </span>
+      <td className="px-6 py-4 whitespace-nowrap text-slate-50">
+        {vacancy.sensor_id}
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-slate-50">Admin</td>
-      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+      <td className="px-6 py-4 whitespace-nowrap text-slate-50">
+        {vacancy.port_r}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-slate-50">
+        {vacancy.port_g}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-slate-50">
+        {vacancy.port_b}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
         <DropdownTable
-          id={user.id}
+          id={vacancy.id}
           handleDelete={handleDelete}
           handleUpdate={handleUpdate}
         />
@@ -57,7 +60,7 @@ function Row({ user }) {
   );
 }
 
-function UsersTable({ users }) {
+function VacanciesTable({ vacancies }) {
   return (
     <div className="overflow-x-auto mt-10">
       <table className="min-w-full divide-y divide-gray-200">
@@ -67,34 +70,41 @@ function UsersTable({ users }) {
               scope="col"
               className="px-6 py-3 text-left text-xs font-medium text-gray-200/50 uppercase tracking-wider"
             >
-              Name
+              Description
             </th>
             <th
               scope="col"
               className="px-6 py-3 text-left text-xs font-medium text-gray-200/50 uppercase tracking-wider"
             >
-              Email
+              Id Sensor
             </th>
             <th
               scope="col"
               className="px-6 py-3 text-left text-xs font-medium text-gray-200/50 uppercase tracking-wider"
             >
-              Status
+              Porta_Red
             </th>
             <th
               scope="col"
               className="px-6 py-3 text-left text-xs font-medium text-gray-200/50 uppercase tracking-wider"
             >
-              Role
+              Porta_Green
             </th>
-            <th scope="col" className="relative px-6 py-3">
-              <span className="sr-only">Edit</span>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-gray-200/50 uppercase tracking-wider"
+            >
+              Porta_Blue
             </th>
+            <th
+              scope="col"
+              className="px-6 py-3 text-left text-xs font-medium text-gray-200/50 uppercase tracking-wider"
+            />
           </tr>
         </thead>
         <tbody className=" divide-y divide-gray-200">
-          {users.map((user) => (
-            <Row key={user.id} user={user} />
+          {vacancies.map((vacancy) => (
+            <Row key={vacancy.id} vacancy={vacancy} />
           ))}
         </tbody>
       </table>
@@ -102,22 +112,30 @@ function UsersTable({ users }) {
   );
 }
 
-export default UsersTable;
+export default VacanciesTable;
 
-UsersTable.propTypes = {
-  users: PropTypes.arrayOf(
+VacanciesTable.propTypes = {
+  vacancies: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
-      nome: PropTypes.string,
-      email: PropTypes.string,
+      description: PropTypes.string,
+      sensor_id: PropTypes.string,
+      port_r: PropTypes.string,
+      port_g: PropTypes.string,
+      port_b: PropTypes.string,
+      micro_id: PropTypes.string,
     })
   ).isRequired,
 };
 
 Row.propTypes = {
-  user: PropTypes.shape({
+  vacancy: PropTypes.shape({
     id: PropTypes.number,
-    nome: PropTypes.string,
-    email: PropTypes.string,
+    description: PropTypes.string,
+    sensor_id: PropTypes.string,
+    port_r: PropTypes.string,
+    port_g: PropTypes.string,
+    port_b: PropTypes.string,
+    micro_id: PropTypes.string,
   }).isRequired,
 };

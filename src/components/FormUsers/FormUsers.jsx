@@ -82,7 +82,6 @@ function FormUsers() {
   };
 
   useEffect(() => {
-    console.log(selectedUser);
     setFormUser(selectedUser);
   }, [setSelectedUser]);
 

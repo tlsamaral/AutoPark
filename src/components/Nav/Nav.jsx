@@ -12,7 +12,7 @@ function Nav() {
         <span className="text-base pt-1">Home</span>
       </Link>
       <Link
-        to="/vanancies"
+        to="/vacancies"
         className="flex gap-2 text-slate-400 hover:text-white transition-all mt-4 items-center"
       >
         <LuMapPin size={21} />

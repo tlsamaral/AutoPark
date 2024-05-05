@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Home from '../Home/Home';
 import Header from '../Header/Header';
 import Users from '../Users/Users';
-import Vanacies from '../Vanacies/Vanacies';
+import Vacancies from '../Vacancies/Vacancies';
 
 function Main() {
   return (
@@ -11,7 +11,7 @@ function Main() {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/vanacies" component={Vanacies} />
+        <Route exact path="/vacancies" component={Vacancies} />
         <Route exact path="/users" component={Users} />
       </Switch>
     </main>
