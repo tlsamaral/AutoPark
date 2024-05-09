@@ -1,5 +1,4 @@
 import { useContext, useEffect } from 'react';
-import { toast } from 'react-toastify';
 
 import axios from '../../services/axios';
 import AppContext from '../../context/AppContext';
@@ -15,7 +14,6 @@ function ListTurnstiles() {
         setTurnstileData(response.data);
       } catch (err) {
         console.log(err);
-        toast.error('Failed to fetch turnstiles. Please try again later.');
       }
     };
     getData();

@@ -1,5 +1,4 @@
 import { useEffect, useContext } from 'react';
-import { toast } from 'react-toastify';
 import CardVanancy from '../CardVanancy/CardVanancy';
 
 import axios from '../../services/axios';
@@ -15,7 +14,6 @@ function ListCardVanancy() {
         setVacancies(response.data);
       } catch (err) {
         console.log(err);
-        toast.error('Failed to fetch vacancies. Please try again later.');
       }
     };
     getData();

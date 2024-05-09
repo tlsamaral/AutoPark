@@ -29,6 +29,11 @@ function MyProvider({ children }) {
     micro_id: '',
     id_occupied: false,
   });
+  const [selectedTurnstile, setSelectedTurnstile] = useState({
+    id: 0,
+    description: '',
+    is_open: false,
+  });
   const value = useMemo(
     () => ({
       users,
@@ -51,6 +56,8 @@ function MyProvider({ children }) {
       setVacancies,
       turnstileData,
       setTurnstileData,
+      selectedTurnstile,
+      setSelectedTurnstile,
     }),
     [
       users,
@@ -73,6 +80,8 @@ function MyProvider({ children }) {
       setVacancies,
       turnstileData,
       setTurnstileData,
+      selectedTurnstile,
+      setSelectedTurnstile,
     ]
   );
 
