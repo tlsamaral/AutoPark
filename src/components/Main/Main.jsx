@@ -8,7 +8,7 @@ import Turnstiles from '../Turnstiles/Turnstiles';
 
 function Main() {
   return (
-    <main className="h-full w-4/5 px-10 py-5 bg-neutral-950 md:w-full sm:w-full overflow-y-auto">
+    <main className="h-full w-full lg:w-4/5 px-4 bg-neutral-950 md:px-3 overflow-y-auto fixed right-0 transition-all">
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />

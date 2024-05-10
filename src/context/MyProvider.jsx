@@ -34,6 +34,7 @@ function MyProvider({ children }) {
     description: '',
     is_open: false,
   });
+  const [showAside, setShowAside] = useState(false);
   const value = useMemo(
     () => ({
       users,
@@ -58,6 +59,8 @@ function MyProvider({ children }) {
       setTurnstileData,
       selectedTurnstile,
       setSelectedTurnstile,
+      showAside,
+      setShowAside,
     }),
     [
       users,
@@ -82,6 +85,8 @@ function MyProvider({ children }) {
       setTurnstileData,
       selectedTurnstile,
       setSelectedTurnstile,
+      showAside,
+      setShowAside,
     ]
   );
 

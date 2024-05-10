@@ -41,7 +41,7 @@ function CardTurnstiles({ turnstile }) {
       className={`w-1/2 rounded-lg bg-neutral-950 p-6 relative  border-zinc-700/50 border-2 ${status ? 'border-t-green-500' : ' border-t-red-500'}`}
     >
       <p className="text-xl text-slate-200 mb-6">{turnstile.description}</p>
-      <div className="w-full mt-2 flex gap-6 justify-between">
+      <div className="w-full mt-2 flex flex-col gap-6 justify-between md:flex-row">
         <div className="flex gap-2">
           <FaCircle
             size={22}
