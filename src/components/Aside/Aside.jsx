@@ -15,7 +15,7 @@ function Aside() {
   return (
     <>
       <aside
-        className={`lg:w-1/5 md:w-[300px] w-2/3 m-w-[300px] z-30 h-full p-6 bg-neutral-950 lg:block border-r lg:translate-x-0 border-gray-100/40 shadow-inner relative transition-all ${showAside ? 'translate -translate-x-full' : 'md:translate-x-0'}`}
+        className={`lg:w-1/5 md:w-[300px] w-4/5 m-w-[300px] z-30 h-full p-6 bg-neutral-950 lg:block border-r lg:translate-x-0 border-gray-100/40 shadow-inner relative transition-all ${showAside ? 'translate -translate-x-full' : 'md:translate-x-0'}`}
       >
         <div className="w-full flex justify-between items-center">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm flex gap-1 justify-between items-center">
