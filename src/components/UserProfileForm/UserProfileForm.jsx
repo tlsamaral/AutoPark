@@ -155,7 +155,7 @@ function UserProfileForm({ userState }) {
           className="w-1/3 h-10 bg-slate-500 rounded-md mt-9 text-slate-100 shadow-lg"
           type="submit"
         >
-          Save changes
+          Save
         </button>
       </div>
     </form>
