@@ -6,7 +6,6 @@ import AppContext from '../../context/AppContext';
 
 function ListCardVanancy() {
   const { vacancies, setVacancies } = useContext(AppContext);
-
   useEffect(() => {
     const getData = async () => {
       try {
