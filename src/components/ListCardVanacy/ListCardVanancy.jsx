@@ -15,6 +15,7 @@ function ListCardVanancy() {
         console.log(err);
       }
     };
+
     getData();
 
     setInterval(() => {
