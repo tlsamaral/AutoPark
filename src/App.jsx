@@ -14,7 +14,6 @@ import './index.css';
 import '@radix-ui/themes/styles.css';
 
 function App() {
-  console.log(process.env);
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
