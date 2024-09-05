@@ -25,7 +25,7 @@ function ListCardVanancy() {
   }, []);
 
   return (
-    <section className="w-full flex flex-wrap gap-4">
+    <section className="w-full flex flex-wrap gap-4 pb-4">
       {vacancies.map((vanancy) => (
         <CardVanancy key={vanancy.id} vanancy={vanancy} />
       ))}
