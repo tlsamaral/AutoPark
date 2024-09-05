@@ -43,7 +43,7 @@ function Aside() {
           </button>
         </div>
 
-        <div className="mt-16">
+        <div className="mt-5">
           <h4 className="text-xs text-slate-400/75">Navegation</h4>
         </div>
         <Nav />
